@@ -3,20 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sunflower · Plant Profile</title>
-  <meta name="description" content="Scan the QR code to learn more about the sunflower: habitat, care, uses, recipes, and benefits." />
+  <title>Sunflower · Mill River Park Plant Profile</title>
+  <meta name="description" content="Scan the QR code to learn more about the sunflower: habitat, care, wildlife value, recipes, and health benefits." />
+
+  <!--
+    Quick setup:
+    1) Replace the placeholder text in the HTML.
+    2) Swap the image src with your plant photo.
+    3) Host this file (Google Sites, GitHub Pages, school website, etc.) and point your QR code to the URL.
+  -->
 
   <style>
     :root{
-      --bg: #f6f7f3;
-      --bg2: #eef3ea;
+      /* Mill River Park inspired palette (fresh greens, warm neutrals) */
+      --bg: #f6f7f3;            /* soft off-white */
+      --bg2: #eef3ea;           /* pale green wash */
       --card: rgba(255,255,255,.92);
       --card2: rgba(255,255,255,.86);
-      --text: #0f2a1c;
+      --text: #0f2a1c;          /* deep evergreen */
       --muted: rgba(15,42,28,.72);
       --line: rgba(15,42,28,.14);
-      --accent: #2f6f4e;
-      --accent2: #7aa66a;
+      --accent: #2f6f4e;        /* park green */
+      --accent2: #7aa66a;       /* lighter leaf green */
       --shadow: 0 18px 50px rgba(0,0,0,.12);
       --radius: 22px;
       --max: 1100px;
@@ -36,7 +44,7 @@
       line-height: 1.45;
     }
 
-    a{ color: var(--accent); text-decoration: none; }
+    a{ color: var(--accent); }
     a:hover{ color: rgba(47,111,78,.85); }
 
     .wrap{
@@ -46,19 +54,26 @@
     }
 
     .topbar{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+      padding:12px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(15,42,28,.14);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
     }
 
     .brand{
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: .2px;
+      text-decoration: none;
     }
 
     .leaf{
@@ -66,23 +81,24 @@
       height: 38px;
       border-radius: 14px;
       background: linear-gradient(135deg, rgba(47,111,78,.95), rgba(122,166,106,.9));
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
       display: grid;
       place-items: center;
       border: 1px solid rgba(255,255,255,.18);
-      color: white;
     }
 
+    .leaf svg{ opacity: .92; color: white; }
+
     .pill{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(47,111,78,.08);
-      border: 1px solid rgba(15,42,28,.14);
-      color: var(--muted);
-      font-size: 13px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(47,111,78,.10);
+      border:1px solid rgba(15,42,28,.18);
+      color:var(--text);
+      font-size:13px;
       white-space: nowrap;
     }
 
@@ -136,10 +152,66 @@
       color: var(--text);
     }
 
+    .tag b{ color: var(--text); font-weight: 700; }
+
     .imgwrap{
-      position: relative;
-      min-height: 320px;
+      position:relative;
+      min-height:320px;
       background: linear-gradient(135deg, rgba(47,111,78,.10), rgba(122,166,106,.10));
+    }
+
+    .imgwrap img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .imgwrap .overlay{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.25;
+      z-index: 0;
+    }
+
+    .imgwrap .mainimg{
+      position: relative;
+      z-index: 1;
+    }
+
+    .imgwrap .imglabel{
+      z-index: 2;
+    }
+
+    .imgfallback{
+      position:absolute;
+      inset:0;
+      display:none;
+      z-index: 1;
+      padding: 18px;
+      align-items: flex-end;
+      justify-content: flex-start;
+      background:
+        radial-gradient(900px 500px at 20% 20%, rgba(47,111,78,.18), transparent 55%),
+        radial-gradient(700px 500px at 85% 10%, rgba(122,166,106,.18), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
+      color: var(--text);
+    }
+
+    .imgfallback .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(15,42,28,.18);
+      background: rgba(255,255,255,.85);
+      font-weight: 700;
     }
 
     .imgwrap img{
@@ -164,22 +236,6 @@
       color: rgba(15,42,28,.92);
       font-size: 14px;
     }
-
-    .btn{
-      appearance: none;
-      border: 1px solid rgba(47,111,78,.22);
-      background: rgba(47,111,78,.10);
-      color: rgba(15,42,28,.92);
-      padding: 10px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 650;
-      letter-spacing: .2px;
-      transition: transform .12s ease, background .12s ease;
-    }
-
-    .btn:active{ transform: scale(.98); }
-    .btn:hover{ background: rgba(47,111,78,.16); }
 
     .grid{
       margin-top: 18px;
@@ -232,7 +288,7 @@
       padding: 12px;
       border-radius: 18px;
       background: rgba(47,111,78,.05);
-      border: 1px solid rgba(15,42,28,.10);
+      border: 1px solid rgba(255,255,255,.12);
     }
 
     @media (max-width: 520px){
@@ -241,7 +297,7 @@
 
     .k{
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 700;
       font-size: 13px;
       display: inline-flex;
       align-items: center;
@@ -252,6 +308,14 @@
       margin: 0;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    .icon{
+      width: 18px;
+      height: 18px;
+      opacity: .92;
+      flex: 0 0 auto;
+      color: var(--accent);
     }
 
     .callout{
@@ -272,6 +336,44 @@
     @media (max-width: 860px){
       .twoCol{ grid-template-columns: 1fr; }
     }
+
+    .footer{
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn{
+      appearance: none;
+      border: 1px solid rgba(47,111,78,.22);
+      background: rgba(47,111,78,.10);
+      color: rgba(15,42,28,.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 650;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease;
+    }
+
+    .btn:active{ transform: scale(.98); }
+    .btn:hover{ background: rgba(47,111,78,.16); }
+
+    .sr{ position:absolute; left:-9999px; }
+
+    /* Print friendly (optional) */
+    @media print{
+      body{ background: white; color: #111; }
+      .card{ box-shadow: none; background: white; border: 1px solid #ddd; }
+      .pill, .btn{ display: none; }
+      .imglabel{ background: rgba(0,0,0,.04); color: #222; border-color: #ddd; }
+      .v, .hint{ color: #333; }
+    }
   </style>
 </head>
 
@@ -279,7 +381,12 @@
   <div class="wrap">
     <div class="topbar">
       <a class="brand" href="#top" aria-label="Plant page home">
-        <span class="leaf" aria-hidden="true">🌿</span>
+        <span class="leaf" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4C14 4 9.5 6.2 7.2 9.5C4.4 13.6 5.1 18.2 5.1 18.2C5.1 18.2 9.7 18.9 13.8 16.1C17.1 13.8 19.3 9.3 19.9 4.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 20C7.2 16.8 10.6 13.9 14.3 11.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
         <span>Mill River Park · Plant Profile</span>
       </a>
 
@@ -289,20 +396,21 @@
       </span>
     </div>
 
+    <!-- HERO -->
     <section class="hero" id="top">
       <div class="card pad">
         <h1 class="title">Sunflower</h1>
         <p class="subtitle">
-          <em>Helianthus annuus</em> · Asteraceae · Common Sunflower
+          <em>Helianthus annuus</em> · Asteraceae (Daisy Family) · Common Sunflower · Giant Sunflower
         </p>
 
         <div class="callout">
           <b>Quick Snapshot</b>
           <div class="meta" style="margin-top:10px">
-            <span class="tag"><b>Type:</b> Annual flowering plant</span>
-            <span class="tag"><b>Origin:</b> North America</span>
-            <span class="tag"><b>Season:</b> Summer to early fall</span>
-            <span class="tag"><b>Fact:</b> Young sunflowers track the sun, called heliotropism</span>
+            <span class="tag"><b>Type:</b> Annual Flowering Herb</span>
+            <span class="tag"><b>Origin:</b> Native to North America</span>
+            <span class="tag"><b>Season:</b> Summer to Early Fall</span>
+            <span class="tag"><b>Interesting fact:</b> Young sunflowers follow the sun across the sky, a movement called heliotropism.</span>
           </div>
         </div>
 
@@ -314,20 +422,29 @@
         </div>
 
         <div style="margin-top:14px; color: var(--muted); font-size: 14px;">
-          <b>Description:</b> Sunflowers are tall, bright yellow flowering plants with large blooms and edible seeds. Their sunny faces and seed patterns make them one of the most recognizable garden flowers.
+          <b>Description:</b> Sunflowers are tall, bright yellow flowering plants known for their large sun shaped blooms and edible seeds. Their faces track sunlight when young, helping maximize growth and energy production.
         </div>
       </div>
 
       <div class="card imgwrap" aria-label="Plant image">
-        <img class="mainimg" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=70" alt="Sunflower" />
+        <!-- Decorative overlay image (behind main) -->
+        <img class="overlay" src="https://images.unsplash.com/photo-1470509037663-253afd7f0f51?auto=format&fit=crop&w=1200&q=70" alt="Sunflower field close up" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';" />
+        <!-- Replace with your real image. You can also use a hosted URL. -->
+        <img class="mainimg" src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=70" alt="Sunflower blooming in sunlight" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'; document.getElementById('heroFallback').style.display='flex';" />
+        <div class="imgfallback" id="heroFallback" aria-hidden="true">
+          <span class="badge">🌻 Sunflower photo placeholder</span>
+        </div>
         <div class="imglabel">
-          <b>Sunflower</b>
-          <div style="margin-top:4px; color: var(--muted);">Blooming in bright sun · loved by pollinators</div>
+          <b>Sunflower</b><br>
+          Blooming in bright sun · Loved by pollinators
         </div>
       </div>
     </section>
 
+    <!-- DETAILS GRID -->
     <section class="grid" aria-label="Plant details">
+
+      <!-- CARE -->
       <div class="card pad col-6" id="care">
         <div class="sectionhead">
           <h2>Care Guide</h2>
@@ -335,24 +452,58 @@
         </div>
         <ul class="list">
           <li class="row">
-            <div class="k">Sunlight</div>
-            <p class="v">Full sun, 6 to 8 plus hours daily</p>
+            <div class="k">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 3v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 18v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M4.2 5.2l2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M17.7 16.7l2.1 2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M3 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M5.2 19.8l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16.7 7.3l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Sunlight
+            </div>
+            <p class="v">Full Sun · 6 to 8+ hours daily · Faces sunlight for optimal growth</p>
           </li>
           <li class="row">
-            <div class="k">Water</div>
-            <p class="v">Moderate, deep watering once or twice weekly</p>
+            <div class="k">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2s6 7 6 12a6 6 0 0 1-12 0c0-5 6-12 6-12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Water
+            </div>
+            <p class="v">Moderate · Deep watering once or twice weekly · Avoid soggy soil</p>
           </li>
           <li class="row">
-            <div class="k">Soil</div>
-            <p class="v">Loamy or sandy, well draining, compost helps</p>
+            <div class="k">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 20c3-6 5-10 8-10s5 4 8 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M7 20h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M9 10V7a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Soil
+            </div>
+            <p class="v">Loamy or sandy soil · Well draining · Neutral to slightly alkaline pH · Compost improves growth</p>
           </li>
           <li class="row">
-            <div class="k">Size</div>
-            <p class="v">About 4 to 12 feet tall depending on variety</p>
+            <div class="k">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 22V8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M16 22V2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M3 12h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M11 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Size
+            </div>
+            <p class="v">4 to 12 feet tall · Fast growing annual · Remove spent blooms for seed harvest</p>
           </li>
         </ul>
       </div>
 
+      <!-- HABITAT -->
       <div class="card pad col-6" id="habitat">
         <div class="sectionhead">
           <h2>Natural Habitat</h2>
@@ -361,15 +512,42 @@
         <div class="twoCol">
           <div class="callout">
             <b>Habitat</b>
-            <p class="v" style="margin-top:8px">Open meadows, prairies, gardens, and fields</p>
+            <p class="v" style="margin-top:8px">Open meadows, prairies, gardens, and agricultural fields</p>
           </div>
           <div class="callout">
             <b>Range</b>
-            <p class="v" style="margin-top:8px">Native to North America and grown worldwide</p>
+            <p class="v" style="margin-top:8px">Native to North America · Cultivated worldwide · Not invasive in managed gardens</p>
           </div>
+        </div>
+        <div style="margin-top:12px" class="callout">
+          <b>Seasonal Notes</b>
+          <p class="v" style="margin-top:8px">Blooms mid summer to fall · Dies after frost · Peak pollination during warm sunny days</p>
         </div>
       </div>
 
+      <!-- WILDLIFE -->
+      <div class="card pad col-4">
+        <div class="sectionhead">
+          <h2>Wildlife Use</h2>
+          <p class="hint">How it supports nature</p>
+        </div>
+        <ul class="list">
+          <li class="row">
+            <div class="k">🦋 Pollinators</div>
+            <p class="v">Bees, butterflies, native pollinators, and beneficial insects</p>
+          </li>
+          <li class="row">
+            <div class="k">🐦 Birds</div>
+            <p class="v">Seeds provide food for finches, cardinals, and other seed eating birds</p>
+          </li>
+          <li class="row">
+            <div class="k">🦌 Other</div>
+            <p class="v">Supports insects and small wildlife; moderately deer resistant</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- HUMAN USE -->
       <div class="card pad col-8" id="uses">
         <div class="sectionhead">
           <h2>Human Use</h2>
@@ -378,61 +556,57 @@
         <div class="twoCol">
           <div class="callout">
             <b>Everyday Uses</b>
-            <p class="v" style="margin-top:8px">Seeds, sunflower oil, garden planting, natural dyes</p>
+            <p class="v" style="margin-top:8px">Edible seeds, sunflower oil production, ornamental landscaping, and natural dyes</p>
           </div>
           <div class="callout">
-            <b>Culture</b>
-            <p class="v" style="margin-top:8px">A symbol of warmth, happiness, and summertime</p>
+            <b>History / Culture</b>
+            <p class="v" style="margin-top:8px">Cultivated by Indigenous peoples for food and oil; symbolizes happiness and longevity in many cultures.</p>
           </div>
         </div>
-      </div>
-
-      <div class="card pad col-4">
-        <div class="sectionhead">
-          <h2>Wildlife Use</h2>
-          <p class="hint">How it supports nature</p>
+        <div style="margin-top:12px" class="callout">
+          <b>Safety Note</b>
+          <p class="v" style="margin-top:8px">Generally safe for humans and pets, though seed allergies may occur in sensitive individuals.
+          </p>
         </div>
-        <ul class="list">
-          <li class="row">
-            <div class="k">Pollinators</div>
-            <p class="v">Bees and butterflies visit for nectar and pollen</p>
-          </li>
-          <li class="row">
-            <div class="k">Birds</div>
-            <p class="v">Seeds feed finches and other seed eating birds</p>
-          </li>
-        </ul>
       </div>
 
+      <!-- RECIPE -->
       <div class="card pad col-6" id="recipe">
         <div class="sectionhead">
           <h2>Recipe</h2>
           <p class="hint">Try it at home</p>
         </div>
         <div class="callout">
+          <img src="https://images.unsplash.com/photo-1604908177225-7a4fd38a0e3d?auto=format&fit=crop&w=1000&q=70" alt="Roasted sunflower seeds recipe" loading="lazy" referrerpolicy="no-referrer" style="width:100%;border-radius:14px;margin-bottom:12px;object-fit:cover;max-height:220px;" onerror="this.style.display='none'; document.getElementById('recipeFallback').style.display='block';" />
+          <div id="recipeFallback" class="callout" style="display:none; margin-bottom:12px;">
+            <b>Recipe image placeholder</b>
+            <p class="v" style="margin-top:6px">Add your own recipe photo here.</p>
+          </div>
           <b>Roasted Sunflower Seeds</b>
-          <p class="v" style="margin-top:8px">Crunchy, nutty snack or salad topper</p>
+          <p class="v" style="margin-top:8px">Crunchy, nutty roasted seeds that make a healthy snack or salad topping.</p>
           <div style="margin-top:12px" class="twoCol">
             <div>
               <b style="display:block; margin-bottom:6px">Ingredients</b>
               <ul style="margin:0; padding-left:18px; color: var(--muted)">
                 <li>Raw sunflower seeds</li>
                 <li>Olive oil</li>
-                <li>Salt or seasoning</li>
+                <li>Salt or seasoning of choice</li>
               </ul>
             </div>
             <div>
               <b style="display:block; margin-bottom:6px">Steps</b>
               <ol style="margin:0; padding-left:18px; color: var(--muted)">
-                <li>Rinse and dry seeds</li>
-                <li>Toss with oil and seasoning</li>
-                <li>Roast at 325°F for 25 to 30 minutes</li>
+                <li>Rinse and dry sunflower seeds.</li>
+                <li>Toss with oil and seasoning.</li>
+                <li>Roast at 325°F for 25 to 30 minutes until golden.</li>
               </ol>
             </div>
           </div>
+          <p class="v" style="margin-top:12px"><b>Tip:</b> Store in an airtight container. Add to salads, granola, or trail mix.</p>
         </div>
       </div>
 
+      <!-- HEALTH BENEFITS -->
       <div class="card pad col-6">
         <div class="sectionhead">
           <h2>Health Benefits</h2>
@@ -440,16 +614,56 @@
         </div>
         <ul class="list">
           <li class="row">
-            <div class="k">Nutrients</div>
-            <p class="v">Vitamin E, magnesium, selenium, healthy fats</p>
+            <div class="k">💚 Nutrients</div>
+            <p class="v">Rich in Vitamin E, magnesium, selenium, and healthy fats.</p>
           </li>
           <li class="row">
-            <div class="k">Caution</div>
-            <p class="v">Avoid if you have seed allergies</p>
+            <div class="k">🧠 Traditional</div>
+            <p class="v">Traditionally valued for heart health and skin nourishment due to antioxidant content.</p>
+          </li>
+          <li class="row">
+            <div class="k">⚠️ Caution</div>
+            <p class="v">Consume in moderation. Consult a professional for dietary or allergy concerns.</p>
           </li>
         </ul>
       </div>
+
+      <!-- EXTRA NOTES -->
+      <div class="card pad col-12">
+        <div class="sectionhead">
+          <h2>Fun Facts & Observation</h2>
+          <p class="hint">Add something memorable for visitors</p>
+        </div>
+        <div class="twoCol">
+          <div class="callout">
+            <b>What to Look For</b>
+            <p class="v" style="margin-top:8px">Large rough leaves, tall sturdy stems, and bright yellow petals surrounding a dark seed filled center.</p>
+          </div>
+          <div class="callout">
+            <b>Did You Know?</b>
+            <p class="v" style="margin-top:8px">A single sunflower head can contain up to 2,000 seeds arranged in beautiful mathematical spirals.</p>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Last updated: <span id="updated">[Month Day, Year]</span></span>
+          <span>Page created for QR learning · Edit anytime</span>
+        </div>
+      </div>
+
     </section>
   </div>
+
+  <script>
+    // Optional: Auto-fill "Last updated" with today's date.
+    // Comment out if you prefer to type it manually.
+    (function(){
+      const el = document.getElementById('updated');
+      if(!el) return;
+      const d = new Date();
+      const opts = { year: 'numeric', month: 'long', day: 'numeric' };
+      el.textContent = d.toLocaleDateString(undefined, opts);
+    })();
+  </script>
 </body>
 </html>

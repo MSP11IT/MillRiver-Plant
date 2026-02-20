@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sugar Maple · Mill River Park Plant Profile</title>
+  <meta name="description" content="Scan the QR code to learn more about Sugar Maple: habitat, care, wildlife value, uses, recipes, and health benefits." />
+
+  <style>
+    :root{
+      --bg: #f6f7f3;
+      --bg2: #eef3ea;
+      --card: rgba(255,255,255,.92);
+      --card2: rgba(255,255,255,.86);
+      --text: #0f2a1c;
+      --muted: rgba(15,42,28,.72);
+      --line: rgba(15,42,28,.14);
+      --accent: #2f6f4e;
+      --accent2: #7aa66a;
+      --shadow: 0 18px 50px rgba(0,0,0,.12);
+      --radius: 22px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% 10%, rgba(47,111,78,.16), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(122,166,106,.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 110%, rgba(15,42,28,.06), transparent 55%),
+        linear-gradient(180deg, var(--bg2), var(--bg));
+      line-height: 1.45;
+    }
+
+    a{ color: var(--accent); }
+    a:hover{ color: rgba(47,111,78,.85); }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 18px 42px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:18px;
+      padding:12px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(15,42,28,.14);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+    }
+
+    .brand{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      text-decoration: none;
+    }
+
+    .leaf{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(47,111,78,.95), rgba(122,166,106,.9));
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+    }
+
+    .leaf svg{ opacity: .92; color: white; }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      background:rgba(47,111,78,.10);
+      border:1px solid rgba(15,42,28,.18);
+      color:var(--text);
+      font-size:13px;
+      white-space: nowrap;
+    }
+
+    .hero{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 860px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .card.pad{ padding: 18px; }
+
+    .title{
+      margin: 0 0 6px;
+      font-size: clamp(26px, 2.6vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.4px;
+    }
+
+    .subtitle{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .meta{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .tag{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,42,28,.16);
+      background: rgba(47,111,78,.06);
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .tag b{ color: var(--text); font-weight: 700; }
+
+    .imgwrap{
+      position:relative;
+      min-height:320px;
+      background: linear-gradient(135deg, rgba(47,111,78,.10), rgba(122,166,106,.10));
+    }
+
+    .imgwrap img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.03);
+    }
+
+    .imgwrap .overlay{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      opacity:.25;
+      z-index: 0;
+    }
+
+    .imgwrap .mainimg{
+      position: relative;
+      z-index: 1;
+    }
+
+    .imglabel{
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      right: 16px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(15,42,28,.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: rgba(15,42,28,.92);
+      font-size: 14px;
+      z-index: 2;
+    }
+
+    .imgfallback{
+      position:absolute;
+      inset:0;
+      display:none;
+      z-index: 1;
+      padding: 18px;
+      align-items: flex-end;
+      justify-content: flex-start;
+      background:
+        radial-gradient(900px 500px at 20% 20%, rgba(47,111,78,.18), transparent 55%),
+        radial-gradient(700px 500px at 85% 10%, rgba(122,166,106,.18), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.75));
+      color: var(--text);
+    }
+
+    .imgfallback .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(15,42,28,.18);
+      background: rgba(255,255,255,.85);
+      font-weight: 700;
+    }
+
+    .grid{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-8{ grid-column: span 8; }
+    .col-12{ grid-column: span 12; }
+
+    @media (max-width: 860px){
+      .col-6, .col-4, .col-8{ grid-column: span 12; }
+    }
+
+    .sectionhead{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sectionhead h2{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: .2px;
+    }
+
+    .hint{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .list{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .row{
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 18px;
+      background: rgba(47,111,78,.05);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    @media (max-width: 520px){
+      .row{ grid-template-columns: 1fr; }
+    }
+
+    .k{
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .v{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .callout{
+      border-radius: 20px;
+      border: 1px dashed rgba(15,42,28,.22);
+      background: rgba(255,255,255,.92);
+      padding: 14px;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .twoCol{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 860px){
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+
+    .footer{
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .btn{
+      appearance: none;
+      border: 1px solid rgba(47,111,78,.22);
+      background: rgba(47,111,78,.10);
+      color: rgba(15,42,28,.92);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 650;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease;
+    }
+
+    .btn:active{ transform: scale(.98); }
+    .btn:hover{ background: rgba(47,111,78,.16); }
+
+    @media print{
+      body{ background: white; color: #111; }
+      .card{ box-shadow: none; background: white; border: 1px solid #ddd; }
+      .pill, .btn{ display: none; }
+      .v, .hint{ color: #333; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#top" aria-label="Plant page home">
+        <span class="leaf" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4C14 4 9.5 6.2 7.2 9.5C4.4 13.6 5.1 18.2 5.1 18.2C5.1 18.2 9.7 18.9 13.8 16.1C17.1 13.8 19.3 9.3 19.9 4.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 20C7.2 16.8 10.6 13.9 14.3 11.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Mill River Park · Plant Profile</span>
+      </a>
+
+      <span class="pill" title="Tip: Keep this page open while you explore the garden.">
+        <span aria-hidden="true">📱</span>
+        QR Learning Page
+      </span>
+    </div>
+
+    <section class="hero" id="top">
+      <div class="card pad">
+        <h1 class="title">Sugar Maple</h1>
+        <p class="subtitle">
+          <em>Acer saccharum</em> · Sapindaceae (Soapberry Family) · Sugar Maple
+        </p>
+
+        <div class="callout">
+          <b>Quick Snapshot</b>
+          <div class="meta" style="margin-top:10px">
+            <span class="tag"><b>Type:</b> Deciduous Tree</span>
+            <span class="tag"><b>Origin:</b> Native to Eastern North America</span>
+            <span class="tag"><b>Season:</b> Spring flowers · Fall color</span>
+            <span class="tag"><b>Interesting fact:</b> Sap flows best in late winter when nights are cold and days are mild.</span>
+          </div>
+        </div>
+
+        <div class="meta">
+          <button class="btn" type="button" onclick="document.getElementById('care').scrollIntoView({behavior:'smooth'});">Care</button>
+          <button class="btn" type="button" onclick="document.getElementById('habitat').scrollIntoView({behavior:'smooth'});">Habitat</button>
+          <button class="btn" type="button" onclick="document.getElementById('uses').scrollIntoView({behavior:'smooth'});">Uses</button>
+          <button class="btn" type="button" onclick="document.getElementById('recipe').scrollIntoView({behavior:'smooth'});">Recipe</button>
+        </div>
+
+        <div style="margin-top:14px; color: var(--muted); font-size: 14px;">
+          <b>Description:</b> Sugar maple is a tall hardwood tree known for brilliant fall leaves and sweet sap that can be boiled into maple syrup. It is a classic tree of northeastern forests.
+        </div>
+
+        <div style="margin-top:14px; color: var(--muted); font-size: 14px;">
+          <b>Navigation:</b>
+          <a href="../plant.html">Back to Plant List</a> · <a href="trees.html">Back to Trees</a>
+        </div>
+      </div>
+
+      <div class="card imgwrap" aria-label="Plant image">
+        <img class="overlay" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=70" alt="Forest canopy" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none';" />
+        <img class="mainimg" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=70" alt="Sugar maple leaves" loading="eager" referrerpolicy="no-referrer" onerror="this.style.display='none'; document.getElementById('heroFallback').style.display='flex';" />
+        <div class="imgfallback" id="heroFallback" aria-hidden="true">
+          <span class="badge">🍁 Sugar Maple photo placeholder</span>
+        </div>
+        <div class="imglabel">
+          <b>Sugar Maple</b><br>
+          Fall color and sap for syrup
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Plant details">
+
+      <div class="card pad col-6" id="care">
+        <div class="sectionhead">
+          <h2>Care Guide</h2>
+          <p class="hint">Best conditions for healthy growth</p>
+        </div>
+        <ul class="list">
+          <li class="row"><div class="k">Sunlight</div><p class="v">Full sun to partial shade · Strongest growth in bright light.</p></li>
+          <li class="row"><div class="k">Water</div><p class="v">Moderate · Keep soil evenly moist when young · Drought stress reduces vigor.</p></li>
+          <li class="row"><div class="k">Soil</div><p class="v">Deep, well drained, fertile soil · Slightly acidic is ideal.</p></li>
+          <li class="row"><div class="k">Size</div><p class="v">Large canopy tree · Often 60 to 80 feet tall with age.</p></li>
+        </ul>
+      </div>
+
+      <div class="card pad col-6" id="habitat">
+        <div class="sectionhead">
+          <h2>Natural Habitat</h2>
+          <p class="hint">Where it grows in the wild</p>
+        </div>
+        <div class="twoCol">
+          <div class="callout"><b>Habitat</b><p class="v" style="margin-top:8px">Mixed hardwood forests, moist slopes, and rich woodland soils.</p></div>
+          <div class="callout"><b>Range</b><p class="v" style="margin-top:8px">Eastern Canada and the northeastern United States.</p></div>
+        </div>
+        <div style="margin-top:12px" class="callout">
+          <b>Seasonal Notes</b>
+          <p class="v" style="margin-top:8px">Sap season is late winter to early spring · Leaves turn yellow, orange, and red in fall.</p>
+        </div>
+      </div>
+
+      <div class="card pad col-4">
+        <div class="sectionhead">
+          <h2>Wildlife Use</h2>
+          <p class="hint">How it supports nature</p>
+        </div>
+        <ul class="list">
+          <li class="row"><div class="k">Pollinators</div><p class="v">Early spring flowers can provide nectar and pollen.</p></li>
+          <li class="row"><div class="k">Birds</div><p class="v">Seeds and insects in the canopy support woodland birds.</p></li>
+          <li class="row"><div class="k">Other</div><p class="v">Provides shade, nesting habitat, and leaf litter that enriches soil.</p></li>
+        </ul>
+      </div>
+
+      <div class="card pad col-8" id="uses">
+        <div class="sectionhead">
+          <h2>Human Use</h2>
+          <p class="hint">Common uses and cultural notes</p>
+        </div>
+        <div class="twoCol">
+          <div class="callout"><b>Everyday Uses</b><p class="v" style="margin-top:8px">Maple syrup and maple sugar from sap · Shade tree · Hardwood lumber.</p></div>
+          <div class="callout"><b>History / Culture</b><p class="v" style="margin-top:8px">Maple sugaring has deep roots in Indigenous knowledge and regional traditions.</p></div>
+        </div>
+        <div style="margin-top:12px" class="callout">
+          <b>Safety Note</b>
+          <p class="v" style="margin-top:8px">Sap is safe when collected cleanly and boiled properly. Only tap appropriate trees with proper guidance.</p>
+        </div>
+      </div>
+
+      <div class="card pad col-6" id="recipe">
+        <div class="sectionhead">
+          <h2>Recipe</h2>
+          <p class="hint">Try it at home</p>
+        </div>
+        <div class="callout">
+          <img src="https://images.unsplash.com/photo-1527596428171-7885b82c91c6?auto=format&fit=crop&w=1000&q=70" alt="Maple syrup" loading="lazy" referrerpolicy="no-referrer" style="width:100%;border-radius:14px;margin-bottom:12px;object-fit:cover;max-height:220px;" onerror="this.style.display='none';" />
+          <b>Maple Syrup on Yogurt and Fruit</b>
+          <p class="v" style="margin-top:8px">A simple way to enjoy maple flavor with a healthy snack.</p>
+          <div style="margin-top:12px" class="twoCol">
+            <div>
+              <b style="display:block; margin-bottom:6px">Ingredients</b>
+              <ul style="margin:0; padding-left:18px; color: var(--muted)">
+                <li>Plain yogurt</li>
+                <li>Fresh fruit</li>
+                <li>Real maple syrup</li>
+              </ul>
+            </div>
+            <div>
+              <b style="display:block; margin-bottom:6px">Steps</b>
+              <ol style="margin:0; padding-left:18px; color: var(--muted)">
+                <li>Spoon yogurt into a bowl.</li>
+                <li>Add fruit on top.</li>
+                <li>Drizzle with maple syrup.</li>
+              </ol>
+            </div>
+          </div>
+          <p class="v" style="margin-top:12px"><b>Tip:</b> Start with a small drizzle. Real maple syrup is sweet and flavorful.</p>
+        </div>
+      </div>
+
+      <div class="card pad col-6">
+        <div class="sectionhead">
+          <h2>Health Benefits</h2>
+          <p class="hint">General wellness info</p>
+        </div>
+        <ul class="list">
+          <li class="row"><div class="k">Nutrients</div><p class="v">Maple syrup has small amounts of minerals like manganese and zinc.</p></li>
+          <li class="row"><div class="k">Traditional</div><p class="v">Long used as a seasonal food and energy source in northeastern communities.</p></li>
+          <li class="row"><div class="k">Caution</div><p class="v">It is still a sugar. Enjoy in moderation.</p></li>
+        </ul>
+      </div>
+
+      <div class="card pad col-12">
+        <div class="sectionhead">
+          <h2>Fun Facts & Observation</h2>
+          <p class="hint">Add something memorable for visitors</p>
+        </div>
+        <div class="twoCol">
+          <div class="callout"><b>What to Look For</b><p class="v" style="margin-top:8px">Opposite leaf arrangement and classic maple leaf shape. In fall, watch for bright color changes.</p></div>
+          <div class="callout"><b>Did You Know?</b><p class="v" style="margin-top:8px">A mature sugar maple can produce many gallons of sap in a good season.</p></div>
+        </div>
+
+        <div class="footer">
+          <span>Last updated: <span id="updated">[Month Day, Year]</span></span>
+          <span>Page created for QR learning · Edit anytime</span>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    (function(){
+      const el = document.getElementById('updated');
+      if(!el) return;
+      const d = new Date();
+      const opts = { year: 'numeric', month: 'long', day: 'numeric' };
+      el.textContent = d.toLocaleDateString(undefined, opts);
+    })();
+  </script>
+</body>
+</html>

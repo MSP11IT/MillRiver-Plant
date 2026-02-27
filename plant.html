@@ -374,46 +374,66 @@
       .imglabel{ background: rgba(0,0,0,.04); color: #222; border-color: #ddd; }
       .v, .hint{ color: #333; }
     }
-    /* 🌈 RAINBOW TABS EFFECT */
+   /* 🎨 Pastel tab colors + matching section tints */
 
+/* Base button style stays, we add pastel variants */
 .btn{
-
-  background: linear-gradient(
-    90deg,
-    #ff6b6b,
-    #ffb347,
-    #ffe066,
-    #7bd389,
-    #6ec5ff,
-    #b388ff
-  );
-
-  color:white;
-  border:none;
-
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.12);
-
-  transition:.25s ease;
+  border: 1px solid rgba(15,42,28,.18);
+  color: rgba(15,42,28,.92);
 }
 
-/* hover glow */
-
-.btn:hover{
-
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 22px rgba(0,0,0,.18);
-
-  filter:saturate(1.2);
+/* Pastel button colors */
+.btn-care{
+  background: linear-gradient(135deg, rgba(140,190,255,.45), rgba(110,170,255,.22));
+  border-color: rgba(110,170,255,.35);
 }
 
-/* pressed look */
+.btn-habitat{
+  background: linear-gradient(135deg, rgba(160,230,190,.45), rgba(120,210,160,.22));
+  border-color: rgba(120,210,160,.35);
+}
 
-.btn:active{
+.btn-uses{
+  background: linear-gradient(135deg, rgba(255,200,160,.45), rgba(255,170,120,.22));
+  border-color: rgba(255,170,120,.35);
+}
 
-  transform:scale(.97);
+.btn-recipe{
+  background: linear-gradient(135deg, rgba(200,180,255,.48), rgba(170,150,255,.22));
+  border-color: rgba(170,150,255,.35);
+}
+
+/* Hover makes each button slightly richer */
+.btn-care:hover,
+.btn-habitat:hover,
+.btn-uses:hover,
+.btn-recipe:hover{
+  filter: saturate(1.15);
+}
+
+/* Matching section card tints (applied to the WHOLE card) */
+.tint-care{
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(140,190,255,.24), transparent 60%),
+    linear-gradient(180deg, var(--card), var(--card2));
+}
+
+.tint-habitat{
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(160,230,190,.24), transparent 60%),
+    linear-gradient(180deg, var(--card), var(--card2));
+}
+
+.tint-uses{
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(255,200,160,.24), transparent 60%),
+    linear-gradient(180deg, var(--card), var(--card2));
+}
+
+.tint-recipe{
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(200,180,255,.24), transparent 60%),
+    linear-gradient(180deg, var(--card), var(--card2));
 }
   </style>
 </head>

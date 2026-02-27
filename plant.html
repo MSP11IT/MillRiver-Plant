@@ -435,6 +435,18 @@
     radial-gradient(900px 420px at 15% 10%, rgba(200,180,255,.24), transparent 60%),
     linear-gradient(180deg, var(--card), var(--card2));
 }
+ /* Wildlife pastel tint */
+
+.btn-wildlife{
+  background: linear-gradient(135deg, rgba(255,225,130,.45), rgba(170,220,140,.25));
+  border-color: rgba(170,220,140,.45);
+}
+
+.tint-wildlife{
+  background:
+    radial-gradient(900px 420px at 15% 10%, rgba(255,225,130,.28), transparent 60%),
+    linear-gradient(180deg, var(--card), var(--card2));
+}
   </style>
 </head>
 
@@ -475,12 +487,12 @@
           </div>
         </div>
 
-        <div class="meta">
-          <button class="btn" type="button" onclick="document.getElementById('care').scrollIntoView({behavior:'smooth'});">Care</button>
-          <button class="btn" type="button" onclick="document.getElementById('habitat').scrollIntoView({behavior:'smooth'});">Habitat</button>
-          <button class="btn" type="button" onclick="document.getElementById('uses').scrollIntoView({behavior:'smooth'});">Uses</button>
-          <button class="btn" type="button" onclick="document.getElementById('recipe').scrollIntoView({behavior:'smooth'});">Recipe</button>
-        </div>
+       <div class="meta">
+  <button class="btn btn-care" type="button" onclick="document.getElementById('care').scrollIntoView({behavior:'smooth'});">Care</button>
+  <button class="btn btn-habitat" type="button" onclick="document.getElementById('habitat').scrollIntoView({behavior:'smooth'});">Habitat</button>
+  <button class="btn btn-uses" type="button" onclick="document.getElementById('uses').scrollIntoView({behavior:'smooth'});">Uses</button>
+  <button class="btn btn-recipe" type="button" onclick="document.getElementById('recipe').scrollIntoView({behavior:'smooth'});">Recipe</button>
+</div>
 
         <div style="margin-top:14px; color: var(--muted); font-size: 14px;">
           <b>Description:</b> Sunflowers are tall, bright yellow flowering plants known for their large sun shaped blooms and edible seeds. Their faces track sunlight when young, helping maximize growth and energy production.
@@ -506,7 +518,7 @@
     <section class="grid" aria-label="Plant details">
 
       <!-- CARE -->
-      <div class="card pad col-6" id="care">
+     <div class="card pad col-6 tint-care" id="care">
         <div class="sectionhead">
           <h2>Care Guide</h2>
           <p class="hint">Best conditions for healthy growth</p>
@@ -565,7 +577,7 @@
       </div>
 
       <!-- HABITAT -->
-      <div class="card pad col-6" id="habitat">
+     <div class="card pad col-8 tint-uses" id="uses">
         <div class="sectionhead">
           <h2>Natural Habitat</h2>
           <p class="hint">Where it grows in the wild</p>
@@ -587,7 +599,7 @@
       </div>
 
       <!-- WILDLIFE -->
-      <div class="card pad col-4">
+     <div class="card pad col-4 tint-wildlife" id="wildlife">
         <div class="sectionhead">
           <h2>Wildlife Use</h2>
           <p class="hint">How it supports nature</p>
@@ -609,7 +621,7 @@
       </div>
 
       <!-- HUMAN USE -->
-      <div class="card pad col-8" id="uses">
+      <div class="card pad col-8 tint-uses" id="uses">
         <div class="sectionhead">
           <h2>Human Use</h2>
           <p class="hint">Common uses and cultural notes</p>

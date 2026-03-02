@@ -497,6 +497,7 @@
     </div>
   </section>
 
+
   <script>
     (function(){
       const el = document.getElementById('updated');
